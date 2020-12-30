@@ -1,0 +1,16 @@
+Rules/Information before you play the Game:
+
++> 3 Difficulty levels. Choose Any one a time
+
++> Game Over if you hit any walls!
+
++> Game Over if you run into your body!
+
++> THIS GAME CAN BE PLAYED ONLY WITH KEYS: w, a, s, d
+
++> Your HighScore will be saved in our Database.
+   It will update as you break a HighScore!
+
++> Updates Will be Out Very Soon! So stay Tuned for that!
+
++> Enjoy. Chao!")
