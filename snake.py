@@ -6,26 +6,12 @@ import random
 from pygame import mixer
 
 
-print("Hello From the Developer of this Game, Rishit.")
+print("\nHello From the Developer of this Game, Rishit.")
 time.sleep(2)
-print("READ THE RULES BEFORE YOU PLAY:")
-time.sleep(1)
-print("+> 3 Difficulty levels. Choose Any on a time")
-time.sleep(1)
-print("+> Game Over if you hit any walls!")
-time.sleep(1)
-print("+> Game Over if you run into your body")
-time.sleep(1)
-print("+> THIS GAME CAN BE PLAYED ONLY WITH KEYS: w, a, s, d")
-time.sleep(1)
-print("+> Your HighScore will be saved in our Database and it will update wach time you break HghScore!")
-time.sleep(1)
-print("+> Updates Will be Out Very Soon! So stay Tuned for that!")
-time.sleep(1)
-print("+> Enjoy. Chao!")
+print("\nREAD THE RULES DOCUMENTATION BEFORE PLAYING!")
+time.sleep(2)
 
-time.sleep(3)
-
+print("\n")
 print("Choose Level:")
 print("+> Easy (1)")
 print("+> Medium (2)")
@@ -34,13 +20,13 @@ print("+> Hard (3)")
 while True:
     difficulty = input("Enter Difficulty Level: ")
     if difficulty == "1":
-        speed = 3
+        speed = 4
         break
     elif difficulty == "2":
-        speed = 5
+        speed = 6
         break
     elif difficulty == "3":
-        speed = 7
+        speed = 8
         break
     else:
         print("Choose from Above Options Only!")
@@ -98,11 +84,12 @@ score = 0
 score_font = pygame.font.SysFont("chiller", 45)
 score_over = pygame.font.SysFont("chiller", 80)
 score_text_var = pygame.font.SysFont("freelansbold", 50)
+high_score = pygame.font.SysFont("chiller", 45)
 
 # High Score
 if (not os.path.exists("database.txt")):
     with open("database.txt", 'w') as f:
-        f.write(str(database))
+        f.write(str(0))
 with open('database.txt', 'r') as f:
     database = f.read()
 
@@ -129,8 +116,13 @@ def game_over_text(text, color):
 
 
 def score_show():
-    text = score_font.render("Score: " + str(score) + "High Score: " + str(database), True, (255, 255, 255))
+    text = score_font.render("Score: " + str(score), True, (255, 255, 255))
     screen.blit(text, (20, 10))
+
+
+def highscore():
+    text = high_score.render("HighScore: " + str(database), True, white)
+    screen.blit(text, (600, 10))
 
 
 def game_over_():
@@ -156,7 +148,7 @@ def snake_collide():
         mixer.music.load('food.wav')
         mixer.music.play()
         speed += 0.1
-        if score > int(database):
+        if score > int(float(database)):
             database = score
 
 
@@ -165,7 +157,7 @@ def snake_draw():
     pygame.draw.rect(screen, white, [x1, y1, 15, 15])
     pygame.draw.rect(screen, red, [food_x, food_y, food_width, food_height])
     score_show()
-
+    highscore()
 
 def main_loop():
     global x1, y1, x1_change, y1_change, game_over, food_x, food_y, score, speed, snk_list, snake_size, snk_length
